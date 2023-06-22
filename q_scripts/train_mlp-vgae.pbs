@@ -1,0 +1,12 @@
+#!/bin/bash
+
+#PBS -l select=1:ncpus=4:mem=24gb:ngpus=1:gpu_type=RTX6000
+#PBS -l walltime=01:00:00
+#PBS -J 1-42
+ 
+cd $HOME
+module load anaconda3/personal
+source activate fyp
+cd big/container/psilocybrain
+ 
+python mlp-regularized-vgae.py $PBS_ARRAY_INDEX
